@@ -1,0 +1,8 @@
+{
+  "name": "eFootball TikTok LIVE Stream Overlay",
+  "description": "Production-ready 9:16 portrait stream overlay for eFootball on TikTok LIVE and OBS Browser Source with electric blue and yellow stadium aesthetics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

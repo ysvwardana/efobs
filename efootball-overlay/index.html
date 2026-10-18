@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080, height=1920, initial-scale=1.0, user-scalable=no">
+  <title>eFootball TikTok LIVE Overlay</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Ensure clean zero-margin transparent background for OBS Studio */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      background: transparent !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       MAIN 9:16 STREAMING OVERLAY VIEWPORT (1080 x 1920)
+       ======================================================================== -->
+  <main class="overlay-viewport" id="overlayCanvas">
+
+    <!-- Celebration Gold Floodlight Burst Layer -->
+    <div class="gold-floodlight-burst" id="goldBurstLayer"></div>
+
+    <!-- ====================================================================
+         SECTION A: HEADER (Top Stadium & Electric Blue Light Beams)
+         ==================================================================== -->
+    <header class="header-section" aria-label="Stadium Header">
+      <!-- High-res stadium roof trusses & floodlights -->
+      <div class="stadium-roof-bg"></div>
+      
+      <!-- Depth vignette & color grade -->
+      <div class="stadium-roof-vignette"></div>
+      <div class="stadium-color-grade"></div>
+
+      <!-- Volumetric Stadium Light Beams & Flares -->
+      <div class="light-beams-layer" id="lightBeamsLayer">
+        <div class="beam beam-1"></div>
+        <div class="beam beam-2"></div>
+        <div class="beam beam-3"></div>
+        <div class="beam-flare flare-1"></div>
+        <div class="beam-flare flare-2"></div>
+        <div class="beam-flare flare-3"></div>
+      </div>
+
+      <!-- Dynamic Diagonal Sports Energy Slashes (Volt Yellow & Electric Blue) -->
+      <div class="diagonal-slashes-layer" id="diagonalSlashesLayer">
+        <div class="slash-cluster">
+          <img src="assets/decorations/slashes.svg" alt="" class="slash-blade slash-blade-yellow-primary">
+        </div>
+      </div>
+
+      <!-- Atmospheric Arena Dust Particles Canvas -->
+      <canvas id="particlesCanvas" class="particles-canvas"></canvas>
+
+      <!-- Top Arena LED Rim Light -->
+      <div class="arena-top-led-rim"></div>
+    </header>
+
+
+    <!-- ====================================================================
+         SECTION B: GAMEPLAY AREA (16:9 Dedicated Transparent Cutout)
+         ==================================================================== -->
+    <section class="gameplay-section" id="gameplaySection" aria-label="eFootball Gameplay Viewport">
+      
+      <!-- Optional Left/Right Cyber Spacers to blend cleanly with 1080px width -->
+      <div class="side-spacer-left"></div>
+      <div class="side-spacer-right"></div>
+
+      <!-- 16:9 Inner Viewport - COMPLETELY TRANSPARENT FOR OBS GAME SOURCE -->
+      <div class="gameplay-cutout" id="gameplayCutout">
+        
+        <!-- Calibration Layer: Hidden by default, only activated during setup if requested -->
+        <div class="gameplay-simulator-layer" id="gameplaySimulatorLayer">
+          <div class="simulator-pitch">
+            <div class="simulator-pitch-lines"></div>
+            <div class="simulator-pitch-center"></div>
+            <div class="simulator-pitch-half"></div>
+            <div class="simulator-watermark-guide">16:9 Gameplay Alignment Guide (Transparent on Stream)</div>
+          </div>
+        </div>
+
+        <!-- Sleek Cyber Esports Frame -->
+        <div class="gameplay-frame">
+          <!-- SVG Outer Chamfered Glow Frame -->
+          <svg class="frame-border-svg" viewBox="0 0 1040 585" preserveAspectRatio="none">
+            <!-- Cut corner polygon (Chamfers on all 4 corners) -->
+            <polygon class="frame-stroke-glow" points="
+              24,0 
+              1016,0 
+              1040,24 
+              1040,561 
+              1016,585 
+              24,585 
+              0,561 
+              0,24
+            " />
+            <polygon class="frame-stroke-inner" points="
+              24,0 
+              1016,0 
+              1040,24 
+              1040,561 
+              1016,585 
+              24,585 
+              0,561 
+              0,24
+            " />
+          </svg>
+
+          <!-- Top Cyber Runner (Electric Yellow with Cyan Accents) -->
+          <div class="frame-accent-top">
+            <img src="assets/decorations/frame_runner_top.svg" alt="" class="accent-runner-bar">
+          </div>
+
+          <!-- Bottom Cyber Runner (Electric Yellow with Cyan Accents) -->
+          <div class="frame-accent-bottom">
+            <img src="assets/decorations/frame_runner_bottom.svg" alt="" class="accent-runner-bar">
+          </div>
+
+          <!-- Corner Brackets -->
+          <div class="corner-bracket corner-tl">
+            <img src="assets/decorations/corner_bracket.svg" alt="">
+          </div>
+          <div class="corner-bracket corner-tr" style="transform: scaleX(-1);">
+            <img src="assets/decorations/corner_bracket.svg" alt="">
+          </div>
+          <div class="corner-bracket corner-bl" style="transform: scaleY(-1);">
+            <img src="assets/decorations/corner_bracket.svg" alt="">
+          </div>
+          <div class="corner-bracket corner-br" style="transform: scale(-1);">
+            <img src="assets/decorations/corner_bracket.svg" alt="">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ====================================================================
+         SECTION C: FOOTER (Stadium Bleachers & Cheering Crowd Atmosphere)
+         ==================================================================== -->
+    <footer class="footer-section" aria-label="Stadium Bleachers and Crowd">
+      <!-- Realistic grandstand crowd silhouette & stadium atmosphere -->
+      <div class="stadium-crowd-bg"></div>
+
+      <!-- Scrim to guarantee maximum legibility for native TikTok LIVE chat -->
+      <div class="crowd-vignette-scrim"></div>
+
+      <!-- Curved LED Ribbon Arc at grandstand rim -->
+      <div class="stadium-ribbon-arc"></div>
+
+      <!-- Spectator Cheering LED Stick Sparkles -->
+      <div class="crowd-lights-layer" id="crowdLightsLayer">
+        <div class="crowd-sparkle sparkle-1"></div>
+        <div class="crowd-sparkle sparkle-2"></div>
+        <div class="crowd-sparkle sparkle-3"></div>
+        <div class="crowd-sparkle sparkle-4"></div>
+        <div class="crowd-sparkle sparkle-5"></div>
+        <div class="crowd-sparkle sparkle-6"></div>
+        <div class="crowd-sparkle sparkle-7"></div>
+        <div class="crowd-sparkle sparkle-8"></div>
+      </div>
+
+      <!-- Minimalist Yellow & Cyan Bottom Geometric Trim -->
+      <div class="footer-accent-slash"></div>
+      <div class="footer-accent-slash-right"></div>
+    </footer>
+
+  </main>
+
+  <!-- Centralized Script Runtime -->
+  <script src="js/main.js"></script>
+</body>
+</html>

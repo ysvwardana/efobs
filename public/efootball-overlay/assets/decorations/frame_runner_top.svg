@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 24" fill="none" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="yellowRunnerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00e5ff" />
+      <stop offset="4%" stop-color="#ffe600" />
+      <stop offset="50%" stop-color="#fff275" />
+      <stop offset="96%" stop-color="#ffe600" />
+      <stop offset="100%" stop-color="#00e5ff" />
+    </linearGradient>
+    <filter id="runnerGlow" x="-5%" y="-50%" width="110%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Left Accent Notch (Electric Cyan) -->
+  <polygon points="12,18 40,18 52,6 24,6" fill="#00e5ff" />
+  
+  <!-- Main Center Electric Yellow Runner -->
+  <g filter="url(#runnerGlow)">
+    <!-- Central Trapezoidal Runner Bar -->
+    <polygon points="60,18 180,18 195,6 845,6 860,18 980,18 995,8 1005,8 992,22 48,22 35,8 45,8" fill="url(#yellowRunnerGrad)" />
+    <!-- Bright Center Speed Segment -->
+    <rect x="440" y="8" width="160" height="4" fill="#ffffff" rx="1" opacity="0.95" />
+  </g>
+
+  <!-- Right Accent Notch (Electric Cyan) -->
+  <polygon points="1000,18 1028,18 1016,6 988,6" fill="#00e5ff" />
+</svg>

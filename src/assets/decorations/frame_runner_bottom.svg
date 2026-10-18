@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 24" fill="none" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="yellowRunnerBottomGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00e5ff" />
+      <stop offset="4%" stop-color="#ffe600" />
+      <stop offset="50%" stop-color="#fff275" />
+      <stop offset="96%" stop-color="#ffe600" />
+      <stop offset="100%" stop-color="#00e5ff" />
+    </linearGradient>
+    <filter id="runnerBottomGlow" x="-5%" y="-50%" width="110%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Left Accent Notch (Electric Cyan) -->
+  <polygon points="12,6 40,6 52,18 24,18" fill="#00e5ff" />
+
+  <!-- Main Bottom Electric Yellow Runner -->
+  <g filter="url(#runnerBottomGlow)">
+    <!-- Central Inverted Trapezoidal Runner Bar -->
+    <polygon points="60,6 180,6 195,18 845,18 860,6 980,6 995,16 1005,16 992,2 48,2 35,16 45,16" fill="url(#yellowRunnerBottomGrad)" />
+    <!-- Bright Center Speed Segment -->
+    <rect x="440" y="12" width="160" height="4" fill="#ffffff" rx="1" opacity="0.95" />
+  </g>
+
+  <!-- Right Accent Notch (Electric Cyan) -->
+  <polygon points="1000,6 1028,6 1016,18 988,18" fill="#00e5ff" />
+</svg>

@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+html, body, #root {
+  background-color: transparent !important;
+  background: transparent !important;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-color: #0052ff;
+  --primary-glow: #00d4ff;
+  --accent-color: #ffe600;
+  --accent-glow: #fff275;
+  --bg-navy: #020b24;
+  --bg-dark: #030712;
+  --light-intensity: 1;
+  --anim-speed: 1;
+  --gameplay-width: 1040px;
+  --gameplay-height: 585px;
+  --gameplay-y-offset: 0px;
+  
+  --toggle-beams: 1;
+  --toggle-slashes: 1;
+  --toggle-particles: 1;
+  --toggle-crowd-lights: 1;
+  --toggle-border-glow: 1;
+}
+
+/* Animations */
+@keyframes sweepBeam1 {
+  0% { transform: rotate(15deg); opacity: 0.45; }
+  100% { transform: rotate(23deg); opacity: 0.75; }
+}
+
+@keyframes sweepBeam2 {
+  0% { transform: rotate(-8deg); opacity: 0.55; }
+  100% { transform: rotate(4deg); opacity: 0.85; }
+}
+
+@keyframes sweepBeam3 {
+  0% { transform: rotate(-24deg); opacity: 0.5; }
+  100% { transform: rotate(-16deg); opacity: 0.8; }
+}
+
+@keyframes flarePulse {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(1.15); opacity: 0.95; }
+}
+
+@keyframes slashShimmer {
+  0% { filter: drop-shadow(0 0 12px rgba(255, 230, 0, 0.6)) brightness(1); transform: translateY(0); }
+  100% { filter: drop-shadow(0 0 24px rgba(255, 230, 0, 0.95)) brightness(1.12); transform: translateY(-2px); }
+}
+
+@keyframes frameBreathing {
+  0% { opacity: 0.65; filter: drop-shadow(0 0 8px var(--primary-glow)); }
+  100% { opacity: 0.95; filter: drop-shadow(0 0 16px var(--primary-glow)); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.7); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+.beam-1 { animation: sweepBeam1 calc(9s / var(--anim-speed)) ease-in-out infinite alternate; }
+.beam-2 { animation: sweepBeam2 calc(11s / var(--anim-speed)) ease-in-out infinite alternate; }
+.beam-3 { animation: sweepBeam3 calc(8s / var(--anim-speed)) ease-in-out infinite alternate; }
+.beam-flare { animation: flarePulse calc(4s / var(--anim-speed)) ease-in-out infinite alternate; }
+.slash-shimmer { animation: slashShimmer calc(5s / var(--anim-speed)) ease-in-out infinite alternate; }
+.frame-glow-anim { animation: frameBreathing calc(4s / var(--anim-speed)) ease-in-out infinite alternate; }
+
+.sparkle-anim-1 { animation: twinkle calc(3s / var(--anim-speed)) infinite 0.2s; }
+.sparkle-anim-2 { animation: twinkle calc(4s / var(--anim-speed)) infinite 1.1s; }
+.sparkle-anim-3 { animation: twinkle calc(2.8s / var(--anim-speed)) infinite 0.6s; }
+.sparkle-anim-4 { animation: twinkle calc(3.5s / var(--anim-speed)) infinite 1.8s; }
+.sparkle-anim-5 { animation: twinkle calc(4.2s / var(--anim-speed)) infinite 0.9s; }
+.sparkle-anim-6 { animation: twinkle calc(3.1s / var(--anim-speed)) infinite 1.4s; }
+.sparkle-anim-7 { animation: twinkle calc(3.8s / var(--anim-speed)) infinite 2.2s; }
+.sparkle-anim-8 { animation: twinkle calc(2.6s / var(--anim-speed)) infinite 0.4s; }
+
+/* Dynamic Lighting Flash & Goal Celebration Strobe FX */
+.stadium-strobe {
+  animation: strobePulse 0.45s ease-out !important;
+}
+
+.goal-celebration-active .header-section {
+  animation: goalCelebrationAnim 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+.goal-celebration-active .beam-1 {
+  animation: sweepBeam1 1.2s ease-in-out infinite alternate !important;
+}
+
+.goal-celebration-active .beam-2 {
+  animation: sweepBeam2 1.4s ease-in-out infinite alternate !important;
+}
+
+.goal-celebration-active .beam-3 {
+  animation: sweepBeam3 1.1s ease-in-out infinite alternate !important;
+}
+
+@keyframes strobePulse {
+  0% { filter: brightness(2.6) contrast(1.4); }
+  50% { filter: brightness(1.8) contrast(1.2); }
+  100% { filter: brightness(1) contrast(1); }
+}
+
+@keyframes goalCelebrationAnim {
+  0% { filter: brightness(2.8) saturate(1.8); }
+  15% { filter: brightness(2.2) saturate(1.5); }
+  35% { filter: brightness(2.6) saturate(2); }
+  60% { filter: brightness(1.7) saturate(1.4); }
+  100% { filter: brightness(1) saturate(1); }
+}
+
+.gold-floodlight-burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 15%, rgba(255, 230, 0, 0.6) 0%, rgba(0, 212, 255, 0.45) 40%, transparent 75%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  z-index: 25;
+  transition: opacity 0.15s ease-out;
+}
+
+.gold-floodlight-burst.active {
+  opacity: 1;
+  animation: burstFade 3s ease-out forwards;
+}
+
+@keyframes burstFade {
+  0% { opacity: 1; transform: scale(1.05); }
+  25% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 0.95; transform: scale(1.03); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+/* Checkerboard background for testing transparency */
+.checkerboard-bg {
+  background-image: 
+    linear-gradient(45deg, #181e2b 25%, transparent 25%), 
+    linear-gradient(-45deg, #181e2b 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #181e2b 75%), 
+    linear-gradient(-45deg, transparent 75%, #181e2b 75%);
+  background-size: 24px 24px;
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0px;
+}
